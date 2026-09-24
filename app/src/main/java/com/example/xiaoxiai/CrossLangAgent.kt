@@ -36,6 +36,7 @@ import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -923,7 +924,7 @@ fun CrossLangScreen(onBack: () -> Unit) {
     val vm: CrossLangViewModel = viewModel(
         factory = ViewModelProvider.AndroidViewModelFactory.getInstance((context.applicationContext as Application))
     )
-    val state by vm.state.collectAsState()
+    val state by vm.state.collectAsStateWithLifecycle()
     val player = rememberTurnPlayer(vm::stopPlayback)
 
     val micPermissionLauncher = rememberLauncherForActivityResult(
